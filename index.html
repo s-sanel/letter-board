@@ -44,18 +44,20 @@
       margin-bottom: 40px;
       color: red;
     }
-    #clearBtn {
+    .btn {
       padding: 10px 20px;
-      font-size: 18px;
+      font-size: 14px;
       cursor: pointer;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-
+  <button class="btn" id="backspaceBtn">← Remove last letter</button>
   <div class="container"><span class="word">Word: </span><span id="output"> </span></div>
+  
   <div id="letters"></div>
-  <button id="clearBtn">Clear</button>
+  <button id="clearBtn" class="btn">Clear word</button>
 
   <script>
     const lettersContainer = document.getElementById("letters");
@@ -67,6 +69,7 @@
     for (let i = 65; i <= 90; i++) {
       const letter = String.fromCharCode(i);
       const div = document.createElement("div");
+      const backspaceBtn = document.getElementById("backspaceBtn");
       div.classList.add("letter");
       div.textContent = letter;
       div.addEventListener("click", () => {
@@ -80,6 +83,12 @@
     clearBtn.addEventListener("click", () => {
       currentWord = "";
       output.textContent = "";
+    });
+
+       // Backspace button
+    backspaceBtn.addEventListener("click", () => {
+      currentWord = currentWord.slice(0, -1);
+      output.textContent = "" + currentWord;
     });
   </script>
 
